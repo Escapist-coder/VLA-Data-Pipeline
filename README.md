@@ -19,6 +19,16 @@ https://github.com/user-attachments/assets/02f7dc55-9ec4-4891-a823-2db0282b5437
   <p><i>示意视频: 经过 Pipeline 清洗并由 VLM 自动生成高质量指令的具身操作轨迹</i></p>
 </div>
 
+本管线对原始数据的核心提升，直观体现在**多模态对齐**与**语义丰富度**上，下图为描述性的对比表格：
+
+| 📉 处理前 (Raw Dirty Data) | 📈 本管线处理后 (Cleaned & Relabeled) |
+| :--- | :--- |
+| ❌ **物理状态:** 包含未对齐的 50Hz 高频噪声 | ✅ **物理状态:** 30Hz 多模态时间戳完美对齐 |
+| ❌ **异常数据:** 夹杂短尾断裂、速度突变帧 | ✅ **异常数据:** 经 Kinematic Filter 拦截剔除 |
+| ❌ **原始标签:** `"chair truncated"` | ✅ **VLM 丰富标签:** `"The robot pushes the chair under the table to organize the spatial arrangement."` |
+
+*(注：左侧模拟原始未经清洗的粗糙状态，右侧为经过 Pipeline 标准化落盘后的高质量训练集状态。)*
+
 ## 📌 项目背景 (Background)
 在人形机器人与双臂灵巧操作的 VLA 模型训练中，**“数据决定了模型的上限”**。真实遥操作采集的数据往往充满噪声。本项目致力于解决以下三大行业痛点：
 1. **异构传感器频率未对齐**（如 30Hz 视觉与 50Hz 本体状态错位）。
@@ -45,7 +55,7 @@ https://github.com/user-attachments/assets/02f7dc55-9ec4-4891-a823-2db0282b5437
 
 ## 🛠️ 快速复现 (Quick Start)
 
-本项目内置了微型测试数据，您可以零成本一键跑通整个流水线，请参照[项目博客]()进行操作后运行主干流水线 (使用 example_data 里的微型数据)
+本项目内置了微型测试数据，您可以零成本一键跑通整个流水线，请参照[项目博客](https://blog.csdn.net/2303_77547168/article/details/158650625?sharetype=blogdetail&sharerId=158650625&sharerefer=PC&sharesource=2303_77547168&spm=1011.2480.3001.8118)进行操作后运行主干流水线 (使用 example_data 里的微型数据)
 
 
 ```bash
